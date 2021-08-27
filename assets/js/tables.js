@@ -9,3 +9,8 @@ $("#crearUsuario").on("click", () => {
   $("#formNuevoUsuario").modal("show");
 });
 
+function asegurar() {
+      rc = confirm("¿Seguro que desea Eliminar?");
+      return rc;
+    }
+

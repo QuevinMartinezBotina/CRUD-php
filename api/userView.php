@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.css">
+    <script src="https://kit.fontawesome.com/a4a6364b6a.js" crossorigin="anonymous"></script>
 
 
     <link href="assets/css/styles.css" rel="stylesheet" />
@@ -21,52 +22,75 @@
     <h1 class="p-2 text-white d-flex justify-content-center">USERS TABLE</h1>
 
 
-    <div class="row mb-2">
-        <div class="col-12">
-            <button class="btn btn-success" id="crearUsuario">New user</button>
+
+    <?php
+
+
+
+    if ($tam == 0) {
+        echo "<br><p><strong>No se encontro Registro de Usuario!!</strong></p>";
+    } else {
+
+    ?>
+
+        <div class="row mb-2">
+            <div class="col-12">
+                <button class="btn btn-success" id="crearUsuario">New user</button>
+                <a class="btn btn-dark" href="?action=home">Home</a>
+                <a class="btn btn-dark" href="?action=home"><i class="fas fa-sync"></i> Refresh</a>
+            </div>
+            <div class="col-12">
+            </div>
         </div>
-    </div>
 
 
-    <table id="table_id" class="display shadow">
-        <thead class="text-white bg-dark ">
-            <tr>
-                <th>
-                    Nombre
-                </th>
-                <th>
-                    Apellidos
-                </th>
-                <th>
-                    Teléfono
-                </th>
-                <th>
-                    Correo
-                </th>
-                <th>
-                    Fecha
-                </th>
-                <th>
-                    Acciones
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>aaa</td>
-                <td>aaa</td>
-                <td>aaa</td>
-                <td>aaa</td>
-                <td>aaa</td>
-                <td>aaa</td>
-            </tr>
+        <table id="table_id" class="display shadow">
+            <thead class="text-white bg-dark ">
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Apellidos
+                    </th>
+                    <th>
+                        Teléfono
+                    </th>
+                    <th>
+                        Correo
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $cont = 1;
 
-        </tbody>
+                foreach ($users as $usuario) {
+                    echo "<tr >" .
+                        "<td class=' pt-4'>" . $usuario["name"] . "</td>" .
+                        "<td class=' pt-4'>" . $usuario["last_name"] . "</td>" .
+                        "<td class=' pt-4'>" . $usuario["email"] . "</td>" .
+                        "<td class=' pt-4'>" . $usuario["phone"] . "</td>" .
 
-        <table>
+                        "<td><a href='?action=actualizar&objeto=" . base64_encode(serialize($usuario)) .
+                        "' class='btn btn-warning p-1 my-3'><i class='fas fa-edit'></i>  Edit</a> &nbsp;&nbsp;" .
+                        "<a href='?action=delete&id=" . base64_encode($usuario["id"]) .
+                        "' class='btn btn-danger p-1 my-3'  onclick='javascript:return asegurar();'><i class='fas fa-trash'></i> Delete</a></td>" .
+                        "</tr>";
+                    $cont++;
+                }
 
+                ?>
 
+            </tbody>
 
+            <table>
+            <?php
+        }
+            ?>
 
             <div class="modal fade" id="formNuevoUsuario" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="formNuevoUsuario" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -131,3 +155,8 @@
 </body>
 
 </html>
+
+<?php
+require_once 'api/routing.php';
+
+?>
