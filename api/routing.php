@@ -10,7 +10,7 @@ if (isset($_GET['action'])) {
         require_once "updateController.php";
     } elseif ($_GET['action'] == "guardar") {
 
-        require_once "actualizar.php";
+        require_once "saveController.php";
     } elseif ($_GET['action'] == "delete") {
 
         require_once "delete.php";

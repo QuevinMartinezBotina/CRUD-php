@@ -9,6 +9,36 @@ class user extends Conexion
     public $email;
     public $phone;
 
+    public function userSave($name, $last_name, $email, $phone)
+    {
+        $mensaje = "";
+        try {
+            $conexion = Conexion::conectar();
+            $sql = "INSERT INTO users(id, name, last_name, email,phone) VALUES (:id, :name, :last_name, :email, :phone);";
+
+            $stmt = $conexion->prepare($sql);
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":name", $name);
+            $stmt->bindParam(":last_name", $last_name);
+            $stmt->bindParam(":email", $email);
+            $stmt->bindParam(":phone", $phone);
+
+            $stmt->execute();
+            $fila = $stmt->rowCount();
+            $mensaje = "Se guardo usuario con exito!!";
+        } catch (PDOException $e) {
+
+            if ($e->errorInfo[1] == 1062) {
+                $mensaje = "Usuario Existe!!";
+                // duplicate entry, do something else
+            } else {
+                // an error other than duplicate entry occurred
+                echo $e->getMessage();
+            }
+        }
+        return $mensaje;
+    }
+
     public function getUsers()
     {
         $conexion = Conexion::conectar();

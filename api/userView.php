@@ -38,6 +38,7 @@
                 <button class="btn btn-success" id="crearUsuario">New user</button>
                 <a class="btn btn-dark" href="?action=home">Home</a>
                 <a class="btn btn-dark" href="?action=home"><i class="fas fa-sync"></i> Refresh</a>
+                <button id="puto" class="btn btn-danger" href="?action=home"><i class="fas fa-gift"></i></button>
             </div>
             <div class="col-12">
             </div>
@@ -77,7 +78,7 @@
 
                         "<td><a href='?action=actualizar&objeto=" . base64_encode(serialize($usuario)) .
                         "' class='btn btn-warning p-1 my-3'><i class='fas fa-edit'></i>  Edit</a> &nbsp;&nbsp;" .
-                        "<a href='?action=delete&id=" . base64_encode($usuario["id"]) .
+                        "<a id='delete'href='?action=delete&id=" . base64_encode($usuario["id"]) .
                         "' class='btn btn-danger p-1 my-3'  onclick='javascript:return asegurar();'><i class='fas fa-trash'></i> Delete</a></td>" .
                         "</tr>";
                     $cont++;
@@ -109,29 +110,43 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form action="?action=guardar" method="post">
+
+
                                 <div class="form-group">
                                     <label for="name" class="col-form-label">Nombre:</label>
-                                    <input type="text" id="name" name="name" class="form-control" id="recipient-name">
+                                    <input type="text" id="name" name="name" class="form-control" id="recipient-name" value="<?php if (isset($name)) {
+                                                                                                                                    echo $name;
+                                                                                                                                } ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="last_name" class="col-form-label">Apellidos:</label>
-                                    <input type="text" id="last_name" name="last_name" class="form-control" id="recipient-name">
+                                    <input type="text" id="last_name" name="last_name" class="form-control" id="recipient-name" value="<?php if (isset($last_name)) {
+                                                                                                                                            echo $last_name;
+                                                                                                                                        } ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone" class="col-form-label">Teléfono:</label>
-                                    <input type="number" id="phone" name="phone" class="form-control" id="recipient-name">
+                                    <input type="number" id="phone" name="phone" class="form-control" id="recipient-name" value="<?php if (isset($phone)) {
+                                                                                                                                        echo $phone;
+                                                                                                                                    } ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="email" class="col-form-label">Correo:</label>
-                                    <input type="email" id="email" name="email" class="form-control" id="recipient-name">
+                                    <input type="email" id="email" name="email" class="form-control" id="recipient-name" value="<?php if (isset($email)) {
+                                                                                                                                    echo $email;
+                                                                                                                                } ?>">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+                                    <button type="submit" name="boton" value="guardar" class="btn btn-primary my-2 p-2 mx-2">
+                                        <i class="fas fa-check"></i> Guardar
+                                    </button>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
-                            <button type="button" id="guardarUsuario" class="btn btn-primary">Guardar</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -146,6 +161,9 @@
             <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.js">
             </script>
             <script src="./assets/js/tables.js"></script>
+
+            <!-- Sweetalert -->
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
             <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

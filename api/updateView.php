@@ -44,7 +44,7 @@
                                                                                                         } ?>">
         </div>
 
-        <div class="ro">
+        <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <a type="submit" name="boton" class="btn btn-success   my-2 p-2" href="?action=mostrar">
                     <i class="fas fa-arrow-left"></i> Regresar
