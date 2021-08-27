@@ -9,6 +9,15 @@ $("#crearUsuario").on("click", () => {
   $("#formNuevoUsuario").modal("show");
 });
 
+
+
+/* $("#UpdateUser").on("click", () => {
+  titleForm = "Update User";
+  update = false;
+  $("#title-form").text(titleForm);
+  $("#formUpdateUser").modal("show");
+}); */
+
 function asegurar() {
       rc = confirm("¿Seguro que desea Eliminar?");
       return rc;
