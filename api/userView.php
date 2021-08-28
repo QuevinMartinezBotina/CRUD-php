@@ -21,11 +21,18 @@
 
     <h1 class="p-2 text-white d-flex justify-content-center">USERS TABLE</h1>
 
-
-
+    <div class="row mb-2">
+        <div class="col-12">
+            <button class="btn btn-success" id="crearUsuario">New user</button>
+            <a class="btn btn-dark" href="?action=home">Home</a>
+            <a class="btn btn-dark" href="?action=home"><i class="fas fa-sync"></i> Refresh</a>
+            <button id="puto" class="btn btn-danger" href="?action=home"><i class="fas fa-gift"></i></button>
+        </div>
+        <div class="col-12">
+        </div>
+    </div>
+    
     <?php
-
-
 
     if ($tam == 0) {
         echo "<br><p><strong>No se encontro Registro de Usuario!!</strong></p>";
@@ -33,16 +40,6 @@
 
     ?>
 
-        <div class="row mb-2">
-            <div class="col-12">
-                <button class="btn btn-success" id="crearUsuario">New user</button>
-                <a class="btn btn-dark" href="?action=home">Home</a>
-                <a class="btn btn-dark" href="?action=home"><i class="fas fa-sync"></i> Refresh</a>
-                <button id="puto" class="btn btn-danger" href="?action=home"><i class="fas fa-gift"></i></button>
-            </div>
-            <div class="col-12">
-            </div>
-        </div>
 
 
         <table id="table_id" class="display shadow">
